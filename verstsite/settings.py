@@ -31,6 +31,10 @@ ALLOWED_HOSTS = [RENDER_EXTERNAL_HOSTNAME, '127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
+    'location.apps.LocationConfig',
+    'items.apps.ItemsConfig',
+    'cities.apps.CitiesConfig',
+    'handler.apps.HandlerConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

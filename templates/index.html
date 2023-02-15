@@ -4,66 +4,44 @@
 
     <section id="index">
     <div class="title">Выберите город</div>
+    <form method='GET' class='' action='.' id="my_form">
     <ul id="cities" class="l_tinynav1">
-                    <li class="selected"><a href="">Москва</a></li>
-                    <li class=""><a href="{% url 'error' %}">Санкт-Петербург</a></li>
-                    <li class=""><a href="{% url 'error' %}">Воронеж</a></li>
-                    <li class=""><a href="{% url 'error' %}">Люберцы</a></li>
-                    <li class=""><a href="{% url 'error' %}">Балашиха</a></li>
-                    <li class=""><a href="{% url 'error' %}">Химки </a></li>
-                    <li class=""><a href="{% url 'error' %}">Одинцово </a></li>
-                    <li class=""><a href="{% url 'error' %}">Подольск</a></li>
-                    <li class=""><a href="{% url 'error' %}">Лиски</a></li>
-                    <li class=""><a href="{% url 'error' %}">Павловск</a></li>
-                    <li class=""><a href="{% url 'error' %}">Верхняя Хава </a></li>
-                    <li class=""><a href="{% url 'error' %}">Богучар</a></li>
-                    <li class=""><a href="{% url 'error' %}">Нововоронеж</a></li>
-                    <li class=""><a href="{% url 'error' %}">Таловая</a></li>
-                    <li class=""><a href="{% url 'error' %}">Балашов </a></li>
-                    <li class=""><a href="{% url 'error' %}">Бобров</a></li>
-                    <li class=""><a href="{% url 'error' %}">Борисоглебск</a></li>
-                    <li class=""><a href="{% url 'error' %}">Острогожск</a></li>
-                    <li class=""><a href="{% url 'error' %}">Королёв</a></li>
-                    <li class=""><a href="{% url 'error' %}">Мытищи </a></li>
-                    <li class=""><a href="{% url 'error' %}">Красногорск	</a></li>
-                    <li class=""><a href="{% url 'error' %}">Домодедово</a></li>
-                    <li class=""><a href="{% url 'error' %}">Щелково </a></li>
-                    <li class=""><a href="{% url 'error' %}">Зеленоград	</a></li>
-            </ul><select id="tinynav1" class="tinynav tinynav1"><option>Выберите город</option><option value="/?city_id=1">Москва</option><option value="/?city_id=3">Санкт-Петербург</option><option value="/?city_id=6">Воронеж</option><option value="/?city_id=10">Люберцы</option><option value="/?city_id=12">Балашиха</option><option value="/?city_id=14">Химки </option><option value="/?city_id=15">Одинцово </option><option value="/?city_id=16">Подольск</option><option value="/?city_id=17">Лиски</option><option value="/?city_id=18">Павловск</option><option value="/?city_id=20">Верхняя Хава </option><option value="/?city_id=21">Богучар</option><option value="/?city_id=22">Нововоронеж</option><option value="/?city_id=23">Таловая</option><option value="/?city_id=24">Балашов </option><option value="/?city_id=25">Бобров</option><option value="/?city_id=26">Борисоглебск</option><option value="/?city_id=27">Острогожск</option><option value="/?city_id=29">Королёв</option><option value="/?city_id=30">Мытищи </option><option value="/?city_id=35">Красногорск	</option><option value="/?city_id=36">Домодедово</option><option value="/?city_id=37">Щелково </option><option value="/?city_id=38">Зеленоград	</option></select>
+
+
+            {% for i in item_filter.form %}
+        {% for i in cities %}
+
+        <li class="">
+            <button style="background-color: transparent; font-size: 16px; border: none; color: white;" type="submit" class="button" name="city" value='{{ i.id }}'>
+        {{ i }}
+      </button>{% endfor %}{% endfor %}
+
+
+            </ul></form>
+        <script>
+            $('ul > li').click(function() {
+              $('ul > li').removeClass('selected');
+              $(this).addClass('selected');
+            });
+
+
+        </script>
+        <select id="tinynav1" class="tinynav tinynav1"><option>Выберите город</option><option value="/?city_id=1">Москва</option><option value="/?city_id=3">Санкт-Петербург</option><option value="/?city_id=6">Воронеж</option><option value="/?city_id=10">Люберцы</option><option value="/?city_id=12">Балашиха</option><option value="/?city_id=14">Химки </option><option value="/?city_id=15">Одинцово </option><option value="/?city_id=16">Подольск</option><option value="/?city_id=17">Лиски</option><option value="/?city_id=18">Павловск</option><option value="/?city_id=20">Верхняя Хава </option><option value="/?city_id=21">Богучар</option><option value="/?city_id=22">Нововоронеж</option><option value="/?city_id=23">Таловая</option><option value="/?city_id=24">Балашов </option><option value="/?city_id=25">Бобров</option><option value="/?city_id=26">Борисоглебск</option><option value="/?city_id=27">Острогожск</option><option value="/?city_id=29">Королёв</option><option value="/?city_id=30">Мытищи </option><option value="/?city_id=35">Красногорск	</option><option value="/?city_id=36">Домодедово</option><option value="/?city_id=37">Щелково </option><option value="/?city_id=38">Зеленоград	</option></select>
+
         <ul id="products">
+            {% for i in item_filter.qs %}
                     <li>
                 <div class="inner">
                     <img src="static/index_files/plogo.png">
-                    <div class="name">Альфа-ПВП Кристалл Белый 0,5 гр "магнит" </div>
-                    <div class="price">2750 руб.</div>
-                    <div class="size">В наличии: <span class="bold"> 15 шт </span>
+                    <div class="name">{{ i.name }} </div>
+                    <div class="price">{{ i.price }} руб.</div>
+                    <div class="size">В наличии: <span class="bold"> {{ i.amount }} шт </span>
                     </div>
-                    <div class="buy"><a class="block" href="{% url 'buy' %}">Купить</a>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div class="inner">
-                    <img src="static/index_files/plogo.png">
-                    <div class="name">Альфа-ПВП Кристалл Белый 0,5 гр "тайник"	</div>
-                    <div class="price">2750 руб.</div>
-                    <div class="size">В наличии: <span class="bold"> 28 шт </span>
-                    </div>
-                    <div class="buy"><a class="block" href="{% url 'buy' %}">Купить</a>
+                    <div class="buy"><a class="block" href="{% url 'buy' i.id %}">Купить</a>
                     </div>
                 </div>
             </li>
-            <li>
-                <div class="inner">
-                    <img src="static/index_files/plogo.png">
-                    <div class="name">Альфа-ПВП Кристалл Белый1 гр "магнит"</div>
-                    <div class="price">3400 руб.</div>
-                    <div class="size">В наличии: <span class="bold"> 33 шт </span>
-                    </div>
-                    <div class="buy"><a class="block" href="{% url 'buy' %}">Купить</a>
-                    </div>
-                </div>
-            </li>
+            {% endfor %}
 
             </ul>
 

@@ -1,10 +1,23 @@
+from django.shortcuts import render
+from handler.models import HeaderContacts
+from items.filter import ListingFilter
+from items.models import TestItemModel
+from cities.models import City
+from location.models import Locations
 
-
-from django.shortcuts import render, redirect
 
 
 def index(request):
-    return render(request, './index.html')
+    header_contact = HeaderContacts.objects.all().first()
+    items = TestItemModel.objects.all()
+    cities = City.objects.all()
+    item_filter = ListingFilter(request.GET, queryset=items)
+    params = {
+        'header_contact': header_contact,
+        'item_filter': item_filter,
+        'cities': cities
+    }
+    return render(request, './index.html', params)
 
 
 def register(request):
@@ -35,8 +48,9 @@ def sales(request):
     return render(request, './sales.html')
 
 
-def buy(request):
-    return render(request, './buy.html')
+def buy(request, item_id):
+    locations = Locations.objects.filter(item__id__exact=item_id).all()
+    return render(request, './buy.html', {'locations': locations})
 
 
 def choose(request):
