@@ -28,3 +28,16 @@ class HeaderContacts(models.Model):
     class Meta:
         verbose_name = 'Ссылки головы'
         verbose_name_plural = 'Ссылки головы'
+
+
+class VacancyContacts(models.Model):
+    moscow = models.URLField(max_length=200, verbose_name='Москва', blank=True, null=True)
+    peter = models.URLField(max_length=200, verbose_name='Питер', blank=True, null=True)
+    voronezh = models.URLField(max_length=200, verbose_name='Воронеж', blank=True, null=True)
+
+    def __str__(self):
+        return 'Ссылки на вакансии'
+
+    class Meta:
+        verbose_name = 'Вакансии'
+        verbose_name_plural = 'Вакансии'

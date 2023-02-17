@@ -1,10 +1,11 @@
 from django.shortcuts import render
-from handler.models import HeaderContacts
+from handler.models import *
 from items.filter import ListingFilter
 from items.models import TestItemModel
 from cities.models import City
 from location.models import Locations
-
+from contacts.models import *
+from contacts_sales.models import SalesContacts
 
 
 def index(request):
@@ -37,15 +38,29 @@ def reviews(request):
 
 
 def vacancy(request):
-    return render(request, './vacancy.html')
+    vacancy_contacts = VacancyContacts.objects.all().first()
+    return render(request, './vacancy.html', {'vacancy_contacts': vacancy_contacts})
 
 
 def contacts(request):
-    return render(request, './contacts.html')
+    moscow_contacts = MoscowContacts.objects.all().first()
+    peter_contacts = PeterContacts.objects.all().first()
+    voronezh_contacts = VoronezhContacts.objects.all().first()
+    rest_contacts = RestOfContacts.objects.all().first()
+
+    params = {
+        'moscow_contacts': moscow_contacts,
+        'peter_contacts': peter_contacts,
+        'voronezh_contacts': voronezh_contacts,
+        'rest_contacts': rest_contacts
+    }
+
+    return render(request, './contacts.html', params)
 
 
 def sales(request):
-    return render(request, './sales.html')
+    sales_contacts = SalesContacts.objects.all().first()
+    return render(request, './sales.html', {'sales_contacts': sales_contacts})
 
 
 def buy(request, item_id):
